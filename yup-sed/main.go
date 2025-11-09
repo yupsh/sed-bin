@@ -6,7 +6,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	yup "github.com/gloo-foo/framework"
+	gloo "github.com/gloo-foo/framework"
 	. "github.com/yupsh/sed"
 )
 
@@ -70,12 +70,12 @@ func action(c *cli.Context) error {
 		params = append(params, Expression(c.Args().Get(0)))
 		// Remaining args are files
 		for i := 1; i < c.NArg(); i++ {
-			params = append(params, yup.File(c.Args().Get(i)))
+			params = append(params, gloo.File(c.Args().Get(i)))
 		}
 	} else {
 		// All args are files
 		for i := 0; i < c.NArg(); i++ {
-			params = append(params, yup.File(c.Args().Get(i)))
+			params = append(params, gloo.File(c.Args().Get(i)))
 		}
 	}
 
@@ -98,5 +98,5 @@ func action(c *cli.Context) error {
 
 	// Create and execute the sed command
 	cmd := Sed(params...)
-	return yup.Run(cmd)
+	return gloo.Run(cmd)
 }
